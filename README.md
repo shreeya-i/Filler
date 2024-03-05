@@ -1,0 +1,14 @@
+Filler is a two-player game available on the iMessage extension GamePigeon. It is relatively simple — the primary objective is to capture a majority of colored tiles on the board. The game board consists of a 7x8 grid, where each cell is one of 6 colors (blue, green, yellow, black, red, purple). 
+The game begins with each player receiving a corner block. On each turn, a selection of 4 available color options is presented, with the 2 minimized / restricted choices being your and your partner’s current colors. Upon choosing a color, your current region merges with all adjacent blocks that match the selected color. Your score increases by the number of squares added during this turn.
+The game ends when every block on the board has been merged into either player’s region and This winner is the one with the majority of the blocks at the end of the game.
+
+The main objectives of this project were to:
+1. Develop the grid system in Python and integrate visually-similar game graphics to the original Filler. 
+2. Randomly distribute squares in the beginning state, ensuring that no adjacent blocks share the same color.
+3. Implement basic gameplay features, including turn taking, blocking forbidden moves (e.g. selecting your or your partner’s current color), and win/loss/tie states.
+4. Integrate the minimax algorithm into the decision-making processes, and test different versions of the heuristic function. Strategically pinpoint an optimal search length to enhance performance.
+5. Incorporate alpha-beta pruning.
+
+The minimax decision algorithm implemented performs well in turn-based games, allowing the program to survey potential future positions and evaluate each move before making the most strategic decision. Minimax creates a decision tree which alternates between the potential moves of two players. The maximizer strives for the highest attainable score, contrasting with the minimizer, whose aim is to consistently achieve the lowest score.
+
+Within Filler, color selection at each node introduces four possibilities. The algorithm has the flexibility to delve deeper, but to avoid prolonged computations, this minimax code is invoked with a set depth value of 3. Optimization is further expedited through the integration of pruning techniques. Since we anticipate rational player behavior in regards to their scores, this approach eliminates the need for exhaustive calculations of every potential value. In this code, the variable alpha signifies the optimum value that the maximizer can currently ensure at or above the specified depth, while beta represents the maximizer's counterpart for the minimizer, and is used to optimize calculations. For example, if the first maximizer node is computed to a value of 3, and the other is projected to be ≥5, we deduce that the minimizer will opt for 3, making further calculations unnecessary.
